@@ -24,7 +24,7 @@ public class Startpoint extends Application {
 
         initRootLayout();
 
-//        showPersonOverview();
+        showPersonOverview();
     }
 
     /**
@@ -70,7 +70,7 @@ public class Startpoint extends Application {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Startpoint.class.getResource("view/PersonOverview.fxml"));
+            loader.setLocation(Startpoint.class.getResource("view/MainView.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
