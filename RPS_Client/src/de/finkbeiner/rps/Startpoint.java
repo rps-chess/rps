@@ -24,7 +24,7 @@ public class Startpoint extends Application {
 
         initRootLayout();
 
-        showPersonOverview();
+        showMainOverview();
     }
 
     /**
@@ -66,7 +66,7 @@ public class Startpoint extends Application {
 //            e.printStackTrace();
 //        }
 //    }
-    public void showPersonOverview() {
+    public void showMainOverview() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();

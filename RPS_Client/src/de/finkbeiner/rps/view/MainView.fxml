@@ -18,8 +18,8 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button fx:id="chatSendBtn" layoutX="868.0" layoutY="56.0" minHeight="50.0" minWidth="70.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="74.0" text="Send" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="870.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
-                  <TextArea fx:id="chatInputAreaTxA" layoutX="41.0" layoutY="-31.0" prefHeight="163.0" prefWidth="841.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="chatSendBtn" layoutX="868.0" layoutY="56.0" minHeight="50.0" minWidth="70.0" mnemonicParsing="false" onAction="#handleSendMessage" onKeyReleased="#handleEnterPressed" prefHeight="52.0" prefWidth="74.0" text="Send" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="870.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
+                  <TextArea fx:id="chatInputAreaTxA" layoutX="41.0" layoutY="-31.0" onKeyPressed="#handleEnterPressed" prefHeight="163.0" prefWidth="841.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
         </items>

@@ -1,11 +1,17 @@
 package de.finkbeiner.rps.view;
 
+import java.io.IOException;
+
 import de.finkbeiner.rps.Startpoint;
 import de.finkbeiner.rps.model.DataBean;
+import de.finkbeiner.rps.model.Figure;
+import de.finkbeiner.socket.SocketConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class MainVC {
@@ -19,12 +25,15 @@ public class MainVC {
 
 	    // Reference to the main application.
 	    private Startpoint startpoint;
-
+        SocketConnection c = new SocketConnection();
 	    /**
 	     * The constructor.
 	     * The constructor is called before the initialize() method.
 	     */
 	    public MainVC() {
+
+            c.startSocket();
+
 	    }
 
 	    /**
@@ -46,5 +55,28 @@ public class MainVC {
 	        this.startpoint = startpoint;
 
 
+	    }
+	    @FXML
+	    private void handleSendMessage(){
+	    	String message = chatInputAreaTxA.getText();
+	    	Figure figure = null ;
+	    	figure.setCarriedItem("sisser");
+//	    	try {
+//		    	
+//		    	figure.setCarriedItem(message);
+//				c.sendFigureToServer(figure);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+	    	
+	    	chatInputAreaTxA.clear();
+	    	chatDisplayAreaTxA.setText( chatDisplayAreaTxA.getText()+"\n"+message);
+	    }
+	    @FXML
+	    public void handleEnterPressed(KeyEvent event){
+	        if (event.getCode() == KeyCode.ENTER) {
+	        	handleSendMessage();
+	        }
 	    }
 	}
