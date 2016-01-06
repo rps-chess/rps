@@ -109,6 +109,7 @@ public class SocketConnection {
                         return true;
                 } catch(Exception e) {
 //                        appendTextMessages("Netzwerkverbindung konnte nicht hergestellt werden");
+                	   System.out.println("verbindung zu server niiicht hergestellt");
                         e.printStackTrace();
                        
                         return false;
@@ -179,8 +180,16 @@ public class SocketConnection {
                         Figure fiugre;
                        
                         try {
-                        	fiugre = (Figure) objectInputStream.readObject();
-                        	System.out.println("Figur ist zurück beim Client "+fiugre.getCarriedItem());
+                        	
+                        	
+                          while((fiugre = (Figure) objectInputStream.readObject()) != null)
+                          {
+                          	System.out.println("Figur ist zurück beim Client "+fiugre.getCarriedItem());
+                                  
+                          }
+                        	
+//                        	fiugre = (Figure) objectInputStream.readObject();
+
 //                                while((message = (String) objectInputStream.readObject()) != null)
 //                                {
                                 	
@@ -188,8 +197,8 @@ public class SocketConnection {
 //                                        textArea_Messages.setCaretPosition(textArea_Messages.getText().length());
 //                                }
                         } catch (IOException | ClassNotFoundException e) {
-//                                appendTextMessages("Nachricht konnte nicht empfangen werden!");
-                                e.printStackTrace();
+                        		
+                        	e.printStackTrace();
                         }
                 }
                

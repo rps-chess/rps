@@ -21,6 +21,8 @@ public class MainVC {
 	    private TextArea chatInputAreaTxA; 
 	   @FXML
 	    private Button chatSendBtn;
+	   
+	   Figure figure;
 
 
 	    // Reference to the main application.
@@ -59,16 +61,19 @@ public class MainVC {
 	    @FXML
 	    private void handleSendMessage(){
 	    	String message = chatInputAreaTxA.getText();
-	    	Figure figure = null ;
-	    	figure.setCarriedItem("sisser");
-//	    	try {
-//		    	
-//		    	figure.setCarriedItem(message);
-//				c.sendFigureToServer(figure);
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+	    	
+	    	figure.setCarriedItem(message);
+//	    	figure.setCarriedItem("sisser");
+	    	
+    	try {
+				c.sendFigureToServer(figure);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	
+	    	
 	    	
 	    	chatInputAreaTxA.clear();
 	    	chatDisplayAreaTxA.setText( chatDisplayAreaTxA.getText()+"\n"+message);
