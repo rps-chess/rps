@@ -16,13 +16,7 @@ public class Figure implements Serializable{
 	String carriedItem;
 	int[] typSurroundingField = new int[9];
 	
-	public Figure(int posX, int posY, String carriedItem, int[] typSurroundingField) {
-		super();
-		this.posX = posX;
-		this.posY = posY;
-		this.carriedItem = carriedItem;
-		this.typSurroundingField = typSurroundingField;
-	}
+
 	public int getPosX() {
 		return posX;
 	}

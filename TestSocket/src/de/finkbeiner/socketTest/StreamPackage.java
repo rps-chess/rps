@@ -11,10 +11,9 @@ public class StreamPackage implements Serializable {
 	Figure figure;
 	String message;
 	
-	public StreamPackage(String message) {
+
+	public StreamPackage() {
 		// TODO Auto-generated constructor stub
-		this.figure = figure;
-		
 	}
 	public Figure getFigure() {
 		return figure;
