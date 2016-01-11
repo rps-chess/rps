@@ -43,7 +43,7 @@ public class socketorginalclient {
  
     	ObjectOutputStream objectOutputStream;
     	ObjectInputStream objectInputStream;
-    	StreamPackage streamPackage;
+    	StreamPackage streamPackage = new StreamPackage("sadasd");
     	String message;
         Figure figure = new Figure(2, 3, "Sisser", null);
 
