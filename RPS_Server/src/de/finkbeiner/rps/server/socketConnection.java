@@ -1,19 +1,14 @@
-
 // Package muss natürlich angepasst werden
 package de.finkbeiner.rps.server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 
 public class socketConnection {
 
@@ -42,8 +37,6 @@ public class socketConnection {
 		public ClientHandler(Socket client) {
 			try {
 				this.client = client;
-				// reader = new BufferedReader(new
-				// InputStreamReader(client.getInputStream()));
 				objectInputStream = new ObjectInputStream(client.getInputStream());
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -52,19 +45,24 @@ public class socketConnection {
 
 		@Override
 		public void run() {
+			String message;
 			Figure figure;
-
+			StreamPackage streamPackage;
 			try {
-				// while((nachricht = reader.readLine()) != null) {
-				while (true) {
-					figure = (Figure) objectInputStream.readObject();
-					appendTextToConsole("Vom Client: \n" + figure.getCarriedItem(), LEVEL_NORMAL);
-					sendToAllClients(figure);
+				while ((streamPackage = (StreamPackage) objectInputStream.readObject()) != null) {
+
+					if ((message = streamPackage.getMessage()) != null) {
+						appendTextToConsole("Vom Client: \n" + message, LEVEL_NORMAL);
+						sendToAllClientsMessage(message);
+					}
+
+					if ((figure = streamPackage.getFigure()) != null) {
+						appendTextToConsole("Vom Client Figure: \n" + figure.getCarriedItem(), LEVEL_NORMAL);
+						sendToAllClientsFigure(figure);
+					}
+
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
@@ -75,9 +73,6 @@ public class socketConnection {
 			try {
 				Socket client = server.accept();
 
-				// PrintWriter writer = new
-				// PrintWriter(client.getOutputStream());
-				// list_clientWriter.add(objectOutputStream);
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(client.getOutputStream());
 				list_clientObjectOutputStream.add(objectOutputStream);
 
@@ -91,10 +86,10 @@ public class socketConnection {
 
 	public boolean runServer() {
 		try {
-			server = new ServerSocket(5556);
+			server = new ServerSocket(5555);
 			appendTextToConsole("Server wurde gestartet!", LEVEL_ERROR);
 
-			// list_clientWriter = new ArrayList<PrintWriter>();
+			list_clientObjectOutputStream = new ArrayList<ObjectOutputStream>();
 			return true;
 		} catch (IOException e) {
 			appendTextToConsole("Server konnte nicht gestartet werden!", LEVEL_ERROR);
@@ -111,20 +106,37 @@ public class socketConnection {
 		}
 	}
 
-	public void sendToAllClients(Figure figure) {
+	public void sendToAllClientsMessage(String message) {
 		Iterator it = list_clientObjectOutputStream.iterator();
-
+		StreamPackage streamPackage = new StreamPackage();
+		
 		while (it.hasNext()) {
 			ObjectOutputStream objectOutputStream = (ObjectOutputStream) it.next();
 			try {
-				objectOutputStream.writeObject(figure);
+				streamPackage.setMessage(message);
+				objectOutputStream.writeObject(streamPackage);
 				objectOutputStream.flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
+	}
 
+	public void sendToAllClientsFigure(Figure figure) {
+		Iterator it = list_clientObjectOutputStream.iterator();
+		StreamPackage streamPackage = new StreamPackage();
+		
+		while (it.hasNext()) {
+			ObjectOutputStream objectOutputStream = (ObjectOutputStream) it.next();
+			try {
+				streamPackage.setFigure(figure);
+				objectOutputStream.writeObject(streamPackage);
+				objectOutputStream.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }

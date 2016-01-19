@@ -6,6 +6,10 @@ import javafx.scene.image.Image;
 
 public class Figure implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8701324038595745167L;
 	int posX;
 	int posY;
 	String carriedItem;
