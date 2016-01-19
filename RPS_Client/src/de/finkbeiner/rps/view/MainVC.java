@@ -27,6 +27,7 @@ public class MainVC {
 	// Reference to the main application.
 	private Startpoint startpoint;
 	SocketConnection socketConnection = new SocketConnection();
+	private String message;
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -60,7 +61,7 @@ public class MainVC {
 	@FXML
 	private void handleSendMessage() {
 		String message = chatInputAreaTxA.getText();
-
+//		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
 		socketConnection.sendMessageToServer(message);
 //		figure.setCarriedItem(message);
 //		socketConnection.sendFigureToServer(figure);
@@ -74,9 +75,18 @@ public class MainVC {
 	public void handleEnterPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			handleSendMessage();
+			
 		}
 	}
+//	@FXML
+//	public void test() {
+//		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
+//	}
+	
 	public void writeMessage(String message){
+		this.message = message;
+		System.out.println("MEssage im VC "+message);
+//		test();
 		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
 	}
 	public void incomingFigure(Figure figure){
