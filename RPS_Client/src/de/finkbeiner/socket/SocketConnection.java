@@ -17,7 +17,10 @@ public class SocketConnection {
 	ObjectOutputStream objectOutputStream;
 	ObjectInputStream objectInputStream;
 	
-	
+
+	public SocketConnection() {
+		startSocket();
+	}
 
 	public void startSocket() {
 
@@ -39,7 +42,7 @@ public class SocketConnection {
 
 			return true;
 		} catch (Exception e) {
-			MainVC mainVC = new MainVC();
+//			MainVC mainVC = new MainVC();
 //			mainVC.writeMessage("Netzwerkverbindung konnte nicht hergestellt werden");
 //			e.printStackTrace();
 
@@ -128,6 +131,7 @@ public class SocketConnection {
 				while ((StreamPackage = (StreamPackage) objectInputStream.readObject()) != null) {
 
 					if ((message = StreamPackage.getMessage()) != null) {
+//						MainVC mainVC = new MainVC();
 //						mainVC.writeMessage(message);
 //						textArea_Messages.setCaretPosition(textArea_Messages.getText().length());
 					}

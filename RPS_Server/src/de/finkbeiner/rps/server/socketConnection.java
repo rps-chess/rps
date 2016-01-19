@@ -9,6 +9,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import de.finkbeiner.rps.model.Figure;
+import de.finkbeiner.rps.model.StreamPackage;
+
 
 public class socketConnection {
 

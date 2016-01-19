@@ -34,7 +34,6 @@ public class MainVC {
 	 */
 	public MainVC() {
 
-		socketConnection.startSocket();
 
 	}
 

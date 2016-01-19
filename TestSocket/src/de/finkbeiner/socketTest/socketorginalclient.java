@@ -7,25 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.io.StringReader;
 import java.net.Socket;
 
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.html.HTMLEditorKit;
 
 public class socketorginalclient {
 
@@ -106,9 +99,9 @@ public class socketorginalclient {
 		}
 	}
 
-	public void sendMessageToServer() {
+	public void sendMessageToServer(String message) {
 		StreamPackage streamPackage = new StreamPackage();
-		String message;
+		
 
 		try {
 			message = textField_ClientMessage.getText();
@@ -151,8 +144,9 @@ public class socketorginalclient {
 			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 				Figure figure = new Figure();
 				figure.setCarriedItem(textField_ClientMessage.getText());
+				String message= textField_ClientMessage.getText();
 				sendFigureToServer(figure);
-				sendMessageToServer();
+				sendMessageToServer(message);
 
 			}
 		}
@@ -171,7 +165,6 @@ public class socketorginalclient {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			sendMessageToServer();
 		}
 
 	}
