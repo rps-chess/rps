@@ -78,16 +78,16 @@ public class MainVC {
 			
 		}
 	}
-//	@FXML
-//	public void test() {
-//		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
-//	}
-	
+
+	@FXML
 	public void writeMessage(String message){
 		this.message = message;
 		System.out.println("MEssage im VC "+message);
-//		test();
-		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
+		chatDisplayAreaTxA.setText( message);
+
+//		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
+		
+		
 	}
 	public void incomingFigure(Figure figure){
 		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + figure.getCarriedItem());
