@@ -26,8 +26,7 @@ public class MainVC {
 
 	// Reference to the main application.
 	private Startpoint startpoint;
-	SocketConnection socketConnection = new SocketConnection();
-	private String message;
+	SocketConnection socketConnection = new SocketConnection(this);
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -66,7 +65,6 @@ public class MainVC {
 //		figure.setCarriedItem(message);
 //		socketConnection.sendFigureToServer(figure);
 
-
 		chatInputAreaTxA.clear();
 		
 	}
@@ -79,13 +77,16 @@ public class MainVC {
 		}
 	}
 
-	@FXML
-	public void writeMessage(String message){
-		this.message = message;
-		System.out.println("MEssage im VC "+message);
-		chatDisplayAreaTxA.setText( message);
+//	 public void test(){
+//	 chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" +
+//	 "Defult");
+//	 }
 
-//		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
+
+		@FXML
+		public void writeMessage(String message){
+			System.out.println("MEssage Client angekommen: "+message);
+		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
 		
 		
 	}

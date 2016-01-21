@@ -16,9 +16,11 @@ public class SocketConnection {
 	Socket client;
 	ObjectOutputStream objectOutputStream;
 	ObjectInputStream objectInputStream;
+	MainVC mainVC;
 	
 
-	public SocketConnection() {
+	public SocketConnection(MainVC mainVC) {
+		this.mainVC = mainVC;
 		startSocket();
 	}
 
@@ -131,8 +133,6 @@ public class SocketConnection {
 				while ((StreamPackage = (StreamPackage) objectInputStream.readObject()) != null) {
 
 					if ((message = StreamPackage.getMessage()) != null) {
-						MainVC mainVC = new MainVC();
-						System.out.println(message+"epfangene Message");
 						mainVC.writeMessage(message);
 //						textArea_Messages.setCaretPosition(textArea_Messages.getText().length());
 					}
