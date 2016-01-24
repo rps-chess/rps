@@ -60,12 +60,9 @@ public class MainVC {
 	@FXML
 	private void handleSendMessage() {
 		String message = chatInputAreaTxA.getText();
-//		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
 		socketConnection.sendMessageToServer(message);
-//		figure.setCarriedItem(message);
-//		socketConnection.sendFigureToServer(figure);
-
 		chatInputAreaTxA.clear();
+		
 		
 	}
 
