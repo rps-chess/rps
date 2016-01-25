@@ -1,23 +1,22 @@
-// Package muss natürlich angepasst werden
+// Package muss natï¿½rlich angepasst werden
+// Kai ist am Start
 package de.finkbeiner.socket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
 import de.finkbeiner.rps.model.Figure;
 import de.finkbeiner.rps.model.StreamPackage;
 import de.finkbeiner.rps.view.MainVC;
 
 public class SocketConnection {
 
-
-
 	Socket client;
 	ObjectOutputStream objectOutputStream;
 	ObjectInputStream objectInputStream;
 	MainVC mainVC;
-	
 
 	public SocketConnection(MainVC mainVC) {
 		this.mainVC = mainVC;
@@ -38,15 +37,17 @@ public class SocketConnection {
 		try {
 			client = new Socket("127.0.0.1", 5555);
 			objectInputStream = new ObjectInputStream(client.getInputStream());
-			objectOutputStream = new ObjectOutputStream(client.getOutputStream());
-//			MainVC mainVC = new MainVC();
-//			mainVC.writeMessage("Netzwerkverbindung hergestellt");
+			objectOutputStream = new ObjectOutputStream(
+					client.getOutputStream());
+			// MainVC mainVC = new MainVC();
+			// mainVC.writeMessage("Netzwerkverbindung hergestellt");
 
 			return true;
 		} catch (Exception e) {
-//			MainVC mainVC = new MainVC();
-//			mainVC.writeMessage("Netzwerkverbindung konnte nicht hergestellt werden");
-//			e.printStackTrace();
+			// MainVC mainVC = new MainVC();
+			// mainVC.writeMessage("Netzwerkverbindung konnte nicht hergestellt
+			// werden");
+			// e.printStackTrace();
 
 			return false;
 		}
@@ -54,7 +55,6 @@ public class SocketConnection {
 
 	public void sendMessageToServer(String message) {
 		StreamPackage streamPackage = new StreamPackage();
-		
 
 		try {
 			streamPackage.setMessage(message);
@@ -65,8 +65,8 @@ public class SocketConnection {
 			e.printStackTrace();
 		}
 
-//		textField_ClientMessage.setText("");
-//		textField_ClientMessage.requestFocus();
+		// textField_ClientMessage.setText("");
+		// textField_ClientMessage.requestFocus();
 	}
 
 	public void sendFigureToServer(Figure figure) {
@@ -81,43 +81,41 @@ public class SocketConnection {
 			e.printStackTrace();
 		}
 
-//		textField_ClientMessage.setText("");
-//		textField_ClientMessage.requestFocus();
+		// textField_ClientMessage.setText("");
+		// textField_ClientMessage.requestFocus();
 	}
 
-
-
-//	// Listener
-//	public class SendPressEnterListener implements KeyListener {
-//		@Override
-//		public void keyPressed(KeyEvent arg0) {
-//			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-//				Figure figure = new Figure();
-//				figure.setCarriedItem(textField_ClientMessage.getText());
-//				String message= textField_ClientMessage.getText();
-//				sendFigureToServer(figure);
-//				sendMessageToServer(message);
-//
-//			}
-//		}
-//
-//		@Override
-//		public void keyReleased(KeyEvent arg0) {
-//		}
-//
-//		@Override
-//		public void keyTyped(KeyEvent arg0) {
-//		}
-//
-//	}
-//
-//	public class SendButtonListener implements ActionListener {
-//
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//		}
-//
-//	}
+	// // Listener
+	// public class SendPressEnterListener implements KeyListener {
+	// @Override
+	// public void keyPressed(KeyEvent arg0) {
+	// if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+	// Figure figure = new Figure();
+	// figure.setCarriedItem(textField_ClientMessage.getText());
+	// String message= textField_ClientMessage.getText();
+	// sendFigureToServer(figure);
+	// sendMessageToServer(message);
+	//
+	// }
+	// }
+	//
+	// @Override
+	// public void keyReleased(KeyEvent arg0) {
+	// }
+	//
+	// @Override
+	// public void keyTyped(KeyEvent arg0) {
+	// }
+	//
+	// }
+	//
+	// public class SendButtonListener implements ActionListener {
+	//
+	// @Override
+	// public void actionPerformed(ActionEvent e) {
+	// }
+	//
+	// }
 
 	public class MessagesFromServerListener implements Runnable {
 
@@ -127,97 +125,100 @@ public class SocketConnection {
 			String message;
 			Figure figure;
 			StreamPackage StreamPackage;
-//			MainVC mainVC = new MainVC();
+			// MainVC mainVC = new MainVC();
 			try {
 
-				while ((StreamPackage = (StreamPackage) objectInputStream.readObject()) != null) {
+				while ((StreamPackage = (StreamPackage) objectInputStream
+						.readObject()) != null) {
 
 					if ((message = StreamPackage.getMessage()) != null) {
 						mainVC.writeMessage(message);
-//						textArea_Messages.setCaretPosition(textArea_Messages.getText().length());
+						// textArea_Messages.setCaretPosition(textArea_Messages.getText().length());
 					}
 
 					if ((figure = StreamPackage.getFigure()) != null) {
-//						mainVC.incomingFigure(figure);
-						
+						// mainVC.incomingFigure(figure);
+
 					}
 				}
 
 			} catch (IOException | ClassNotFoundException e) {
-//				mainVC.writeMessage("Nachricht konnte nicht empfangen werden!");
+				// mainVC.writeMessage("Nachricht konnte nicht empfangen
+				// werden!");
 				e.printStackTrace();
 			}
 		}
 
 	}
 }
-//// Package muss natürlich angepasst werden
-//package de.finkbeiner.socket;
+//// Package muss natï¿½rlich angepasst werden
+// package de.finkbeiner.socket;
 //
 //
-//import java.io.IOException;
-//import java.io.ObjectInputStream;
-//import java.io.ObjectOutputStream;
-//import java.net.Socket;
-//import de.finkbeiner.rps.model.Figure;
+// import java.io.IOException;
+// import java.io.ObjectInputStream;
+// import java.io.ObjectOutputStream;
+// import java.net.Socket;
+// import de.finkbeiner.rps.model.Figure;
 //
-//public class SocketConnection {
+// public class SocketConnection {
 //
-//	Socket client;
-//	ObjectInputStream objectInputStream;
-//	ObjectOutputStream objectOutputStream;
+// Socket client;
+// ObjectInputStream objectInputStream;
+// ObjectOutputStream objectOutputStream;
 //
 //
-//	public void startSocket() {
+// public void startSocket() {
 //
-//		if (!connectToServer()) {
-//			// Connect-Label anzeigen ob verbunden oder nicht...
-//		}
+// if (!connectToServer()) {
+// // Connect-Label anzeigen ob verbunden oder nicht...
+// }
 //
-//		Thread t = new Thread(new MessagesFromServerListener());
-//		t.start();
+// Thread t = new Thread(new MessagesFromServerListener());
+// t.start();
 //
-//	}
+// }
 //
-//	public boolean connectToServer() {
-//		try {
-//			client = new Socket("127.0.0.1", 5556);
-//			objectInputStream = new ObjectInputStream(client.getInputStream());
-//			objectOutputStream = new ObjectOutputStream(client.getOutputStream());
-//			System.out.println("verbindung zu server hergestellt");
+// public boolean connectToServer() {
+// try {
+// client = new Socket("127.0.0.1", 5556);
+// objectInputStream = new ObjectInputStream(client.getInputStream());
+// objectOutputStream = new ObjectOutputStream(client.getOutputStream());
+// System.out.println("verbindung zu server hergestellt");
 //
-//			return true;
-//		} catch (Exception e) {
-//			System.out.println("verbindung zu server nicht hergestellt");
-//			e.printStackTrace();
+// return true;
+// } catch (Exception e) {
+// System.out.println("verbindung zu server nicht hergestellt");
+// e.printStackTrace();
 //
-//			return false;
-//		}
-//	}
+// return false;
+// }
+// }
 //
-//	public void sendFigureToServer(Figure figure) throws IOException {
-//		objectOutputStream.writeObject(figure);
-//		objectOutputStream.flush();
-//	}
+// public void sendFigureToServer(Figure figure) throws IOException {
+// objectOutputStream.writeObject(figure);
+// objectOutputStream.flush();
+// }
 //
-//	public class MessagesFromServerListener implements Runnable {
+// public class MessagesFromServerListener implements Runnable {
 //
-//		@Override
-//		public void run() {
-//			Figure fiugre;
+// @Override
+// public void run() {
+// Figure fiugre;
 //
-//			try {
+// try {
 //
-//				while ((fiugre = (Figure) objectInputStream.readObject()) != null) {
-//					System.out.println("Figur ist zurück beim Client: " + fiugre.getCarriedItem());
+// while ((fiugre = (Figure) objectInputStream.readObject()) != null) {
+// System.out.println("Figur ist zurï¿½ck beim Client: " +
+//// fiugre.getCarriedItem());
 //
-//				}
+// }
 //
-//			} catch (IOException | ClassNotFoundException e) {
+// } catch (IOException | ClassNotFoundException e) {
 //
-//				e.printStackTrace();
-//			}
-//		}
+// e.printStackTrace();
+// }
+// }
 //
-//	}
-//}
+// }
+// }
