@@ -83,11 +83,11 @@ public class MainVC {
 		@FXML
 		public void writeMessage(String message){
 			System.out.println("MEssage Client angekommen: "+message);
-		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
+		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + message);
 		
 		
 	}
 	public void incomingFigure(Figure figure){
-		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + figure.getCarriedItem());
+		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + figure.getCarriedItem());
 	}
 }

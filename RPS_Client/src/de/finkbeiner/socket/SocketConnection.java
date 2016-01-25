@@ -124,19 +124,19 @@ public class SocketConnection {
 
 			String message;
 			Figure figure;
-			StreamPackage StreamPackage;
+			StreamPackage streamPackage;
 			// MainVC mainVC = new MainVC();
 			try {
 
-				while ((StreamPackage = (StreamPackage) objectInputStream
+				while ((streamPackage = (StreamPackage) objectInputStream
 						.readObject()) != null) {
 
-					if ((message = StreamPackage.getMessage()) != null) {
+					if ((message = streamPackage.getMessage()) != null) {
 						mainVC.writeMessage(message);
 						// textArea_Messages.setCaretPosition(textArea_Messages.getText().length());
 					}
 
-					if ((figure = StreamPackage.getFigure()) != null) {
+					if ((figure = streamPackage.getFigure()) != null) {
 						// mainVC.incomingFigure(figure);
 
 					}

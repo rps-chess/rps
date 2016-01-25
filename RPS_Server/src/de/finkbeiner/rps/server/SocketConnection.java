@@ -38,7 +38,7 @@ public class SocketConnection {
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(client.getOutputStream());
 				list_clientObjectOutputStream.add(objectOutputStream);
 				
-
+				
 				Thread clientThread = new Thread(new ClientHandler(client));
 				clientThread.start();
 			} catch (IOException e) {
