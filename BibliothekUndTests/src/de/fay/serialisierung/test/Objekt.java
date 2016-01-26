@@ -1,6 +1,8 @@
 package de.fay.serialisierung.test;
 
-public class Objekt {
+import java.io.Serializable;
+
+public class Objekt implements Serializable {
 
 	private int nummer;
 	private String name;
