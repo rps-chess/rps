@@ -26,8 +26,12 @@ public class SocketConnection {
 
 	public void startSocket() {
 
+	
 		if (!connectToServer()) {
 			// Connect-Label anzeigen ob verbunden oder nicht...
+			/*
+			 * TODO Eher ob Verbindungsaufbau möglich oder?
+			 */
 		}
 
 		Thread t = new Thread(new MessagesFromServerListener());
@@ -126,12 +130,18 @@ public class SocketConnection {
 
 			String message;
 			Figure figure;
+			/*
+			 * TODO SEHR VERWIRREND! Variablen und Objekte bitte immer klein schreiben!
+			 */
 			StreamPackage StreamPackage;
 //			MainVC mainVC = new MainVC();
 			try {
 
 				while ((StreamPackage = (StreamPackage) objectInputStream.readObject()) != null) {
 
+					/*
+					 * Sieht aus wie eine statische Methode
+					 */
 					if ((message = StreamPackage.getMessage()) != null) {
 						mainVC.writeMessage(message);
 //						textArea_Messages.setCaretPosition(textArea_Messages.getText().length());

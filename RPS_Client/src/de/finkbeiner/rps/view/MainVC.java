@@ -27,6 +27,9 @@ public class MainVC {
 	// Reference to the main application.
 	private Startpoint startpoint;
 	SocketConnection socketConnection = new SocketConnection(this);
+	/*
+	 * TODO Namensgebung unglücklich, zwei Klassen mit gleichem Namen SocketConnection und socketConnection
+	 */
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -54,6 +57,10 @@ public class MainVC {
 	 */
 	public void setMainApp(Startpoint startpoint) {
 		this.startpoint = startpoint;
+		/*
+		 * TODO Abklären! Warum wird hier der Startpoint übergeben?
+		 * Wird in der Klasse nicht mehr verwendet + kein Getter vorhanden.
+		 */
 
 	}
 
@@ -61,6 +68,12 @@ public class MainVC {
 	private void handleSendMessage() {
 		String message = chatInputAreaTxA.getText();
 //		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
+		
+		/*
+		 * TODO hier Abfrage ob eine Eingabe getätigt wurde. 
+		 * Ansonsten kann mit Enter immer ein NULL-Wert versendet werden!
+		 * Zusätzlich, bei schnellem Senden hintereinander wird die Socket-Verbindung reseted.
+		 */
 		socketConnection.sendMessageToServer(message);
 //		figure.setCarriedItem(message);
 //		socketConnection.sendFigureToServer(figure);
@@ -86,6 +99,9 @@ public class MainVC {
 		@FXML
 		public void writeMessage(String message){
 			System.out.println("MEssage Client angekommen: "+message);
+			/*
+			 * TODO Warum wird hier eine Leerzeile in das Textfeld geschrieben?
+			 */
 		chatDisplayAreaTxA.setText(chatDisplayAreaTxA.getText() + "\n" + message);
 		
 		
